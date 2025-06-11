@@ -1,0 +1,54 @@
+🟩 Proje Adı: Okul Yönetim Sistemi (Ürün Yönetimi API)
+
+📁 Proje Yapısı:
+- Model Katmanı: `students` sınıfı, ürün veritabanı modelini tanımlar ve JPA ile tabloya eşlenir.
+- Repository Katmanı: `StudentRepository`, Spring Data JPA ile temel veritabanı işlemlerini otomatikleştirir.
+- Service Katmanı: `StudentService`, iş mantığını ve işlemleri yönetir.
+- Controller Katmanı: `StudentController`, REST API uç noktalarını tanımlar.
+- Ana Uygulama: `SchoolManagementApplication`, Spring Boot uygulamasını başlatır.
+- Yapılandırma: `application.properties`, veritabanı ve uygulama ayarlarını içerir.
+
+🔗 API Uç Noktaları:
+
+1. ✅ Tüm Ürünleri Listele  
+   - **GET** `/api/students`  
+   - Tüm ürünleri listeler.
+
+2. ✅ ID’ye Göre Ürün Getir  
+   - **GET** `/api/students/{id}`  
+   - Belirli ID'ye sahip ürünü getirir.
+
+3. ✅ Yeni Ürün Ekle  
+   - **POST** `/api/students`  
+   - Veritabanına yeni bir ürün ekler.  
+   - Örnek Body:
+     ```json
+     {
+         "name": "Test Ürünü",
+         "description": "Test açıklaması",
+         "price": 99.99,
+         "stock": 100
+     }
+     ```
+
+4. ✅ Ürün Güncelle  
+   - **PUT** `/api/students/{id}`  
+   - ID’ye göre ürünü günceller.
+
+5. ✅ Ürün Sil  
+   - **DELETE** `/api/students/{id}`  
+   - ID’ye göre ürünü siler.
+
+🛢️ Veritabanı:
+- Projede **H2 in-memory database** kullanılmıştır.
+- Geliştirme ortamı içindir. Gerçek projelerde MySQL, PostgreSQL tercih edilebilir.
+
+🧪 Test Adımları:
+1. Projeyi başlat:  
+   - Terminal: `./mvnw spring-boot:run`  
+   - veya IDE (VS Code, IntelliJ) ile çalıştır.
+2. `http://localhost:8080/api/students` adresine istek gönder.
+3. Postman ya da benzeri araçla API'leri test et.
+
+👨‍💻 Geliştirici:  
+- GitHub: https://github.com/ruyakmrc

@@ -1,0 +1,14 @@
+# Java dosyaları için text formatı
+*.java text eol=lf
+
+# Kaynak dosyalar
+*.xml text
+*.properties text
+
+# Binary dosyalar
+*.jar binary
+*.png binary
+*.jpg binary
+
+# Normalize line endings
+* text=auto

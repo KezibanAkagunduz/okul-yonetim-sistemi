@@ -1,0 +1,26 @@
+# Maven
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+**/logs/
+*.log
+
+# IDE'ler
+/.idea/
+/*.iml
+*.class
+*.jar
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Java
+*.war
+*.ear
+
+# Application config
+application.properties
+application.yml
+
+# VS Code
+.vscode/
