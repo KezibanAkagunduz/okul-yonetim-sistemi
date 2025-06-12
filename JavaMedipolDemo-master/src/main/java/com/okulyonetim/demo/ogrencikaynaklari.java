@@ -1,9 +1,16 @@
 package com.okulyonetim.demo;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 
 
 @Repository
-public interface ogrencikaynaklari extends JpaRepository<Ogrenci, Long> {}
+public interface ogrencikaynaklari extends JpaRepository<Ogrenci, Long> {
+     
+    List<Ogrenci> findByBolum(String bolum);
+
+    
+}

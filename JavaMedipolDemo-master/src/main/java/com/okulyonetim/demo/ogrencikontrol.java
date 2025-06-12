@@ -3,6 +3,8 @@ package com.okulyonetim.demo;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,22 +27,43 @@ public class ogrencikontrol {
     }
 
     @GetMapping("/{id}")
-    public Ogrenci getStudentById(@PathVariable Long id) {
-        return studentService.getStudentById(id).orElse(null);
+    public ResponseEntity<Ogrenci> getStudentById(@PathVariable Long id) {
+        return studentService.getStudentById(id)
+            .map(ResponseEntity::ok)
+            .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public Ogrenci addStudent(@RequestBody Ogrenci student) {
-        return studentService.addStudent(student);
+    public ResponseEntity<Ogrenci> addStudent(@RequestBody Ogrenci student) {
+        Ogrenci createdStudent = studentService.addStudent(student);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdStudent);
     }
 
     @PutMapping("/{id}")
-    public Ogrenci updateStudent(@PathVariable Long id, @RequestBody Ogrenci student) {
-        return studentService.updateStudent(id, student);
+    public ResponseEntity<Ogrenci> updateStudent(@PathVariable Long id, @RequestBody Ogrenci student) {
+        try {
+            Ogrenci updatedStudent = studentService.updateStudent(id, student);
+            return ResponseEntity.ok(updatedStudent);
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @DeleteMapping("/{id}")
-    public void deleteStudent(@PathVariable Long id) {
-        studentService.deleteStudent(id);
+    public ResponseEntity<Void> deleteStudent(@PathVariable Long id) {
+        try {
+            studentService.deleteStudent(id);
+            return ResponseEntity.noContent().build();
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
+
+    // bölüme göre öğrenci arama
+    @GetMapping("/bolum/{bolum}")
+    public ResponseEntity<List<Ogrenci>> getStudentsByBolum(@PathVariable String bolum) {
+    List<Ogrenci> students = studentService.getStudentsByBolum(bolum);
+    return ResponseEntity.ok(students);
+    }
+
 }

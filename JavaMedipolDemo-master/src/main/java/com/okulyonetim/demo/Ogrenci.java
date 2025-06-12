@@ -1,8 +1,6 @@
 package com.okulyonetim.demo;
 
 
-import java.math.BigDecimal;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,31 +10,33 @@ import jakarta.persistence.Table;
 
 
 @Entity
-@Table (name = "students")
+@Table(name = "STUDENTS")
 public class Ogrenci {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    private String ad;
+    private String soyad;
+    private String numara;
+    private String bolum;
+    private String email;
 
-
-    private BigDecimal price;
-    private String description;
-    private Integer stock;
-
-
+    // Boş constructor (zorunlu)
     public Ogrenci() {
     }
 
-    public Ogrenci(String name, BigDecimal price, String description, Integer stock) {
-        this.name = name;
-        this.price = price;
-        this.description = description;
-        this.stock = stock;
+    // Parametreli constructor
+    public Ogrenci(String ad, String soyad, String numara, String bolum, String email) {
+        this.ad = ad;
+        this.soyad = soyad;
+        this.numara = numara;
+        this.bolum = bolum;
+        this.email = email;
     }
 
+    // Getter ve Setter'lar
     public Long getId() {
         return id;
     }
@@ -45,40 +45,55 @@ public class Ogrenci {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getAd() {
+        return ad;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setAd(String ad) {
+        this.ad = ad;
     }
 
-    public BigDecimal getPrice() {
-        return price;
+    public String getSoyad() {
+        return soyad;
     }
 
-    public void setPrice(BigDecimal price) {
-        this.price = price;
+    public void setSoyad(String soyad) {
+        this.soyad = soyad;
     }
 
-    public String getDescription() {
-        return description;
+    public String getNumara() {
+        return numara;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setNumara(String numara) {
+        this.numara = numara;
     }
 
-    public Integer getStock() {
-        return stock;
+    public String getBolum() {
+        return bolum;
     }
 
-    public void setStock(Integer stock) {
-        this.stock = stock;
+    public void setBolum(String bolum) {
+        this.bolum = bolum;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override
     public String toString() {
-        return super.toString();
+        return "Ogrenci{" +
+                "id=" + id +
+                ", ad='" + ad + '\'' +
+                ", soyad='" + soyad + '\'' +
+                ", numara='" + numara + '\'' +
+                ", bolum='" + bolum + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

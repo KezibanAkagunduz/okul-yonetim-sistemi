@@ -29,17 +29,23 @@ public class ogrneciislemleri {
         studentRepository.deleteById(id);
     }
 
-    public Ogrenci updateStudent(Long id, Ogrenci updatedStudent) {
-        Ogrenci existingStudent = studentRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("Student not found"));
-        
-        existingStudent.setName(updatedStudent.getName());
-        existingStudent.setId(updatedStudent.getId());
-        existingStudent.setPrice(updatedStudent.getPrice());
-        existingStudent.setDescription(updatedStudent.getDescription());
-        existingStudent.setStock(updatedStudent.getStock());
-    
-        return studentRepository.save(existingStudent);
+    public List<Ogrenci> getStudentsByBolum(String bolum) {
+    return studentRepository.findByBolum(bolum);
     }
+
+
+    public Ogrenci updateStudent(Long id, Ogrenci updatedStudent) {
+    Ogrenci existingStudent = studentRepository.findById(id)
+        .orElseThrow(() -> new RuntimeException("Öğrenci bulunamadı"));
+
+    existingStudent.setAd(updatedStudent.getAd());
+    existingStudent.setSoyad(updatedStudent.getSoyad());
+    existingStudent.setNumara(updatedStudent.getNumara());
+    existingStudent.setBolum(updatedStudent.getBolum());
+    existingStudent.setEmail(updatedStudent.getEmail());
+
+    return studentRepository.save(existingStudent);
+    }
+
     
 }
